@@ -22,6 +22,7 @@ public class EncoderTest {
     public void testToBinary() {
         assertEquals("01000011", encoder.toBinary('C'));
         assertEquals("01001010", encoder.toBinary('J'));
+        assertEquals("00110001", encoder.toBinary('1'));
     }
 
     @Test
