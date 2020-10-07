@@ -8,7 +8,7 @@ public class Encoder {
     private final int GRID_WIDTH = 9;
     private int rowNumber = 0;
 
-    // TODO : placer les public en haut
+    // TODO : placer les public en haut OU DANS DES CLASSES UTILITAIRES
 
     public Encoder(String entry) {
         this.gridHeight = getGridHeight(entry);
