@@ -16,6 +16,37 @@ public class Encoder {
         convertToBinary(entry);
     }
 
+    public int calculateParityBit(int[] parityArray) {
+        int sum = 0;
+        for (int j : parityArray) {
+            sum += j;
+        }
+        if (sum % 2 == 0) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public String toBinary(char currentChar) {
+        String result = Integer.toBinaryString(currentChar);
+        if (result.length() <= 7 && result.charAt(0) == '1') {
+            int zerosToAdd = 8 - result.length();
+            for (int i = 0; i < zerosToAdd; i++) {
+                result = "0" + result;
+            }
+            return result;
+        }
+        return result;
+    }
+
+    public int getGridHeight(String entry) {
+        int strLength = entry.length();
+        if (strLength <= 8) {
+            return strLength;
+        }
+        return (strLength / 8) + strLength;
+    }
+
     private void convertToBinary(String entry) {
         int strLength = entry.length();
         String binaryString;
@@ -35,35 +66,7 @@ public class Encoder {
         rowNumber++;
     }
 
-    public int calculateParityBit(int[] parityArray) {
-        int sum = 0;
-        for (int j : parityArray) {
-            sum += j;
-        }
-        if (sum % 2 == 0) {
-            return 0;
-        }
-        return 1;
-    }
-
-    public String toBinary(char currentChar) {
-        // TODO : 7 - longeurResult = zero a mettre (for loop)
-        String result = Integer.toBinaryString(currentChar);
-        if (result.length() <= 7 && result.charAt(0) == '1') {
-            return "0" + result;
-        }
-        return result;
-    }
-
     private void initialiseGrid() {
         this.binaryGrid = new int[this.gridHeight][this.GRID_WIDTH];
-    }
-
-    public int getGridHeight(String entry) {
-        int strLength = entry.length();
-        if (strLength <= 8) {
-            return strLength;
-        }
-        return (strLength / 8) + strLength;
     }
 }
