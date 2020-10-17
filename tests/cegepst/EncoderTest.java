@@ -16,6 +16,7 @@ public class EncoderTest {
         assertEquals(6, encoder.getGridHeight("joshua"));
         assertEquals(18, encoder.getGridHeight("bonjour le monde"));
         assertEquals(10, encoder.getGridHeight("El Blanco"));
+        assertEquals(27, encoder.getGridHeight("Une planche de huit pied"));
     }
 
     @Test
@@ -28,6 +29,7 @@ public class EncoderTest {
         assertEquals("01101111", encoder.toBinary('o'));
         assertEquals("01101110", encoder.toBinary('n'));
         assertEquals("01101100", encoder.toBinary('l'));
+        assertEquals("01101010", encoder.toBinary('j'));
     }
 
     @Test

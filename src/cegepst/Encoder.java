@@ -3,8 +3,7 @@ package cegepst;
 public class Encoder {
 
     private int[][] binaryGrid;
-    private int[] parityArray;
-    private int gridHeight;
+    private final int gridHeight;
     private final int GRID_WIDTH = 9;
     private int rowNumber = 0;
 
@@ -14,6 +13,7 @@ public class Encoder {
         this.gridHeight = getGridHeight(entry);
         initialiseGrid();
         convertToBinary(entry);
+        Printer.printGrid(binaryGrid);
     }
 
     public int calculateParityBit(int[] parityArray) {
@@ -44,7 +44,7 @@ public class Encoder {
         if (strLength <= 8) {
             return strLength;
         }
-        return (strLength / 8) + strLength;
+        return (int) Math.ceil((double) strLength / 9) + strLength;
     }
 
     private void convertToBinary(String entry) {
@@ -52,18 +52,42 @@ public class Encoder {
         String binaryString;
         for (int i = 0; i < strLength; i++) {
             binaryString = toBinary(entry.charAt(i));
-            putInGrid(binaryString, i);
+
+            Console.printLine(binaryString);
+
+            putInGrid(binaryString);
         }
     }
 
-    private void putInGrid(String binaryString, int index) {
-        parityArray = new int[9];
+    private void putInGrid(String binaryString) {
+        int[] parityArray = new int[8];
+
+        if (rowNumber % 9 == 0 && rowNumber != 0) {
+            calculateParityLine();
+            binaryGrid[rowNumber][9] = calculateParityBit(parityArray);
+            rowNumber++;
+            return;
+        }
+
         for (int i = 0; i < binaryString.length(); i++) {
             parityArray[i] = binaryString.charAt(i);
             binaryGrid[rowNumber][i] = binaryString.charAt(i);
         }
-        binaryGrid[rowNumber][9] = calculateParityBit(parityArray);
+
+        binaryGrid[rowNumber][8] = calculateParityBit(parityArray);
         rowNumber++;
+    }
+
+    public void calculateParityLine() {
+        int lastRowToStartAt = rowNumber - 8;
+        int endOfRow = lastRowToStartAt + 7;
+        int[] parityLine = new int[9];
+        for (int i = lastRowToStartAt; i < endOfRow; i++) {
+            for (int j = 0; j < 8; i++) {
+                parityLine[i] = binaryGrid[j][i];
+            }
+            binaryGrid[rowNumber][i] = calculateParityBit(parityLine);
+        }
     }
 
     private void initialiseGrid() {
