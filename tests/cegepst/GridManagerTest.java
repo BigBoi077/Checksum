@@ -18,5 +18,6 @@ public class GridManagerTest {
         assertEquals(18, gridManager.getGridHeight("bonjour le monde"));
         assertEquals(10, gridManager.getGridHeight("El Blanco"));
         assertEquals(27, gridManager.getGridHeight("Une planche de huit pied"));
+        assertEquals(13, gridManager.getGridHeight("Miami palms"));
     }
 }

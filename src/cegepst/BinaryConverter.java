@@ -10,14 +10,17 @@ public class BinaryConverter {
 
     public String toBinary(char currentChar) {
         String result = Integer.toBinaryString(currentChar);
-        if (result.length() <= 7 && result.charAt(0) == '1') {
-            int zerosToAdd = 8 - result.length();
-            for (int i = 0; i < zerosToAdd; i++) {
+        if (isToShort(result)) {
+            for (int i = 0; i < 9 - result.length(); i++) {
                 result = "0" + result;
             }
             return result;
         }
         return result;
+    }
+
+    private boolean isToShort(String result) {
+        return (result.length() <= 7 && result.charAt(0) == '1');
     }
 
     public void convertToBinary(String entry, int[][] binaryGrid) {
@@ -26,7 +29,7 @@ public class BinaryConverter {
         for (int i = 0; i < strLength; i++) {
             binaryString = toBinary(entry.charAt(i));
 
-            Console.printLine(binaryString);
+            Console.printLine(i + " : " + binaryString);
 
             gridManager.putInGrid(binaryString, binaryGrid);
         }

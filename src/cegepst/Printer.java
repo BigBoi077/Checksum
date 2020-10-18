@@ -5,7 +5,7 @@ public class Printer {
         Console.printLine("");
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                Console.printInt(binaryGrid[j][i]);
+                Console.printInt(binaryGrid[i][j]);
             }
             Console.printLine("");
         }

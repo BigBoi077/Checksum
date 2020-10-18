@@ -18,5 +18,7 @@ public class ParityCalculatorTest {
         assertEquals(0, parityCalculator.calculateParityBit(new int[]{0, 0, 1, 1, 0, 0, 0, 0}));
         assertEquals(1, parityCalculator.calculateParityBit(new int[]{1, 0, 1, 1, 0, 0, 0, 0}));
         assertEquals(0, parityCalculator.calculateParityBit(new int[]{0, 0, 1, 1, 0, 0, 1, 1}));
+        assertEquals(0, parityCalculator.calculateParityBit(new int[]{0, 1, 1, 1, 1, 1, 1, 0}));
+        assertEquals(0, parityCalculator.calculateParityBit(new int[]{1, 1, 1, 1, 1, 1, 1, 1}));
     }
 }

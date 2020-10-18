@@ -1,7 +1,5 @@
 package cegepst;
 
-import java.awt.*;
-
 public class Encoder {
 
     private GridManager gridManager;
@@ -15,19 +13,20 @@ public class Encoder {
     public Encoder(String entry) {
         initialiseClasses();
         initialiseGrid(entry);
-
-        parityCalculator.giveParams(binaryGrid);
-
+        giveParamsToClasses();
         binaryConverter.convertToBinary(entry, binaryGrid);
-
         Printer.printGrid(binaryGrid);
+    }
+
+    private void giveParamsToClasses() {
+        parityCalculator.giveParams(binaryGrid);
+        gridManager.giveParams(rowNumber, parityCalculator);
     }
 
     private void initialiseClasses() {
         gridManager = new GridManager();
         binaryConverter = new BinaryConverter(gridManager);
         parityCalculator = new ParityCalculator();
-        gridManager.giveParams(rowNumber, parityCalculator);
     }
 
     private void initialiseGrid(String entry) {
