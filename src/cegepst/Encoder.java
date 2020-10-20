@@ -15,7 +15,7 @@ public class Encoder {
         initialiseGrid(entry);
         giveParamsToClasses();
         binaryConverter.convertToBinary(entry, binaryGrid);
-        Printer.printGrid(binaryGrid);
+        Printer.printGrid(binaryGrid, gridHeight);
     }
 
     private void giveParamsToClasses() {

@@ -6,6 +6,11 @@ public class GridManager {
     private int rowNumber;
     private int gridHeight;
 
+    public void giveParams(int rowNumber, ParityCalculator parityCalculator) {
+        this.rowNumber = rowNumber;
+        this.parityCalculator = parityCalculator;
+    }
+
     public int getGridHeight(String entry) {
         int strLength = entry.length();
         if (strLength <= 8) {
@@ -16,39 +21,49 @@ public class GridManager {
         return (int) Math.ceil((double) strLength / 9) + strLength;
     }
 
+    public int getLastBlockToStartAt(int gridHeight) {
+        double ratio = (double) gridHeight / 9;
+        double decimals = getDecimals(ratio);
+        return (int) (decimals * 9);
+    }
+
+    public double getDecimals(double number) {
+        String numberD = String.valueOf(number);
+        numberD = numberD.substring (numberD.indexOf ("."));
+        return Double.parseDouble(numberD);
+    }
+
+    public boolean isLastLine(int rowNumber, int gridHeight) {
+        return (rowNumber - gridHeight) == -1;
+    }
+
+    public boolean isLastBlock(int rowNumber, int gridHeight) {
+        return (gridHeight - rowNumber) <= 8;
+    }
+
     public void putInGrid(String binaryString, int[][] binaryGrid) {
+        rowNumber++;
         int[] parityArray = new int[8];
 
-        if (rowNumber % 7 == 0 && rowNumber != 0) {
-            rowNumber++;
-
-
-            int[] parityLine = parityCalculator.calculateParityLine(8 - rowNumber);
-
+        if (isLastLine(rowNumber, gridHeight)) {
+            int[] parityLine = parityCalculator.calculateParityLineLastBlock(getLastBlockToStartAt(gridHeight), rowNumber);
             placeParityLine(parityLine, binaryGrid);
+            return;
+        }
 
+        if (rowNumber % 8 == 0 && rowNumber != 0) {
+            int[] parityLine = parityCalculator.calculateParityLine(rowNumber - 7);
+            placeParityLine(parityLine, binaryGrid);
             binaryGrid[rowNumber][8] = parityCalculator.calculateParityBit(parityLine);
-
-            rowNumber++;
-
             return;
         }
 
         for (int i = 0; i < binaryString.length(); i++) {
-
-
-
             parityArray[i] = binaryString.charAt(i);
             binaryGrid[rowNumber][i] = Integer.parseInt(String.valueOf(binaryString.charAt(i)));
         }
 
         binaryGrid[rowNumber][8] = parityCalculator.calculateParityBit(parityArray);
-
-        rowNumber++;
-    }
-
-    public boolean isLastBlock(int rowNumber, int gridHeight) {
-        return (gridHeight - rowNumber) <= 8;
     }
 
     private void placeParityLine(int[] parityLine, int[][] binaryGrid) {
@@ -60,10 +75,5 @@ public class GridManager {
         }
         Console.printLine("");
         Console.printLine("");
-    }
-
-    public void giveParams(int rowNumber, ParityCalculator parityCalculator) {
-        this.rowNumber = rowNumber;
-        this.parityCalculator = parityCalculator;
     }
 }
