@@ -29,8 +29,11 @@ public class BinaryConverter {
         for (int i = 0; i < strLength; i++) {
             binaryString = toBinary(entry.charAt(i));
 
-            Console.printLine(i + " : " + binaryString);
-
+            if (i <= 9) {
+                Console.printLine(i + " : " + binaryString);
+            } else {
+                Console.printLine(i + ": " + binaryString);
+            }
             gridManager.putInGrid(binaryString, binaryGrid);
         }
     }

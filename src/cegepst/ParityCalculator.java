@@ -15,17 +15,17 @@ public class ParityCalculator {
         return 1;
     }
 
-    public int[] calculateParityLine(int rowNumber) {
-        int lastRowToStartAt = rowNumber - 8;
-        int endOfRow = lastRowToStartAt + 7;
+    public int[] calculateParityLine(int number) {
         int index = 0;
 
-        int[] tempParityLine = new int[9];
-        int[] parityLine = new int[9];
+        int[] tempParityLine = new int[8];
+        int[] parityLine = new int[8];
 
-        for (int i = lastRowToStartAt; i < endOfRow; i++) {
+        // TODO : fix pour qu'il aille chercher le dernier nombre
+
+        for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                tempParityLine[i] = binaryGrid[i][j];
+                tempParityLine[j] = binaryGrid[j][i];
             }
             parityLine[index] = calculateParityBit(tempParityLine);
             index++;

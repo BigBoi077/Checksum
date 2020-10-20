@@ -20,4 +20,12 @@ public class GridManagerTest {
         assertEquals(27, gridManager.getGridHeight("Une planche de huit pied"));
         assertEquals(13, gridManager.getGridHeight("Miami palms"));
     }
+
+    @Test
+    public void testIsLastBlock() {
+        assertEquals(true, gridManager.isLastBlock(10, 18));
+        assertEquals(false, gridManager.isLastBlock(6, 18));
+        assertEquals(false, gridManager.isLastBlock(13, 54));
+        assertEquals(true, gridManager.isLastBlock(60, 66));
+    }
 }

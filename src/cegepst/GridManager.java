@@ -21,17 +21,23 @@ public class GridManager {
 
         if (rowNumber % 7 == 0 && rowNumber != 0) {
             rowNumber++;
-            int[] parityLine = parityCalculator.calculateParityLine(rowNumber);
+
+
+            int[] parityLine = parityCalculator.calculateParityLine(8 - rowNumber);
 
             placeParityLine(parityLine, binaryGrid);
 
             binaryGrid[rowNumber][8] = parityCalculator.calculateParityBit(parityLine);
 
             rowNumber++;
+
             return;
         }
 
         for (int i = 0; i < binaryString.length(); i++) {
+
+
+
             parityArray[i] = binaryString.charAt(i);
             binaryGrid[rowNumber][i] = Integer.parseInt(String.valueOf(binaryString.charAt(i)));
         }
@@ -39,6 +45,10 @@ public class GridManager {
         binaryGrid[rowNumber][8] = parityCalculator.calculateParityBit(parityArray);
 
         rowNumber++;
+    }
+
+    public boolean isLastBlock(int rowNumber, int gridHeight) {
+        return (gridHeight - rowNumber) <= 8;
     }
 
     private void placeParityLine(int[] parityLine, int[][] binaryGrid) {
