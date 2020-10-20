@@ -67,7 +67,7 @@ public class GridManager {
     }
 
     private void placeParityLine(int[] parityLine, int[][] binaryGrid) {
-        Console.printLine("Parity line " + rowNumber + " : ");
+        Console.printLine("Parity line: ");
         Console.printText("    ");
         for (int i = 0; i < 8; i++ ) {
             binaryGrid[rowNumber][i] = parityLine[i];
