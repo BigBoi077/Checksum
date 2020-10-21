@@ -15,6 +15,7 @@ public class GridManagerTest {
     @Test
     public void testGetGridHeight() {
         assertEquals(7, gridManager.getGridHeight("joshua"));
+        assertEquals(16, gridManager.getGridHeight("joshua leblanc"));
         assertEquals(18, gridManager.getGridHeight("bonjour le monde"));
         assertEquals(10, gridManager.getGridHeight("El Blanco"));
         assertEquals(27, gridManager.getGridHeight("Une planche de huit pied"));

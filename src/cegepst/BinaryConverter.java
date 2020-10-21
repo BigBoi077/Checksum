@@ -30,9 +30,9 @@ public class BinaryConverter {
             binaryString = toBinary(entry.charAt(i));
 
             if (i <= 9) {
-                Console.printLine(i + " : " + binaryString);
+                Console.printText(i + " : " + binaryString);
             } else {
-                Console.printLine(i + ": " + binaryString);
+                Console.printText(i + ": " + binaryString);
             }
             gridManager.putInGrid(binaryString, binaryGrid);
         }

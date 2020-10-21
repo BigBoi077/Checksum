@@ -16,36 +16,34 @@ public class ParityCalculator {
     }
 
     public int[] calculateParityLine(int lastBlockToStartAt) {
-        int index = 0;
-
-        int[] tempParityLine = new int[8];
+        int[] verticalColumn = new int[8];
         int[] parityLine = new int[8];
 
         // TODO : fix pour qu'il aille chercher le dernier nombre
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                tempParityLine[j] = binaryGrid[j][i];
+        for (int col = 0; col < 8; col++) {
+            for (int row = 0; row < 8; row++) {
+                verticalColumn[row] = binaryGrid[row][col];
             }
-            parityLine[index] = calculateParityBit(tempParityLine);
-            index++;
+            parityLine[col] = calculateParityBit(verticalColumn);
         }
+
         return parityLine;
     }
 
     public int[] calculateParityLineLastBlock(int lastBlockToStartAt, int rowNumber) {
         int index = 0;
 
-        int[] tempParityLine = new int[8];
+        int[] verticalColumn = new int[8];
         int[] parityLine = new int[8];
 
         // TODO : fix pour qu'il aille chercher le dernier nombre
 
         for (int i = 0; i > 8; i++) {
             for (int j = 0; j > lastBlockToStartAt; j++) {
-                tempParityLine[j] = binaryGrid[j][i];
+                verticalColumn[j] = binaryGrid[j][i];
             }
-            parityLine[index] = calculateParityBit(tempParityLine);
+            parityLine[index] = calculateParityBit(verticalColumn);
             index++;
         }
         return parityLine;

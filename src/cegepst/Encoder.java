@@ -8,7 +8,7 @@ public class Encoder {
     private int[][] binaryGrid;
     private final int GRID_WIDTH = 9;
     private int gridHeight;
-    private int rowNumber = 0;
+    private int rowNumber = -1;
 
     public Encoder(String entry) {
         initialiseClasses();
