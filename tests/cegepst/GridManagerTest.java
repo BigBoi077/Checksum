@@ -20,5 +20,6 @@ public class GridManagerTest {
         assertEquals(2, gridManager.getNbrOfBlocks("El Blanco"));
         assertEquals(3, gridManager.getNbrOfBlocks("Une planche de huit pied"));
         assertEquals(2, gridManager.getNbrOfBlocks("Miami palms"));
+        assertEquals(4, gridManager.getNbrOfBlocks("asdfaskdfla;sdkf'a;lsdfasdl';f"));
     }
 }

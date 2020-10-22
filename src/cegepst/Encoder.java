@@ -8,12 +8,18 @@ public class Encoder {
     private BinaryConverter binaryConverter;
     private ParityCalculator parityCalculator;
     private ArrayList<Block> blocks;
+    private String entry;
 
     public Encoder(String entry) {
+        this.entry = entry;
+    }
+
+    public ArrayList<Block> encode() {
         initialiseClasses();
         initialiseBlocks(entry);
         giveParamsToClasses();
-        binaryConverter.convertToBinary(entry, blocks);
+        binaryConverter.start(entry, blocks);
+        return blocks;
     }
 
     private void initialiseBlocks(String entry) {

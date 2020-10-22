@@ -4,17 +4,20 @@ import java.util.ArrayList;
 
 public class Printer {
     // TODO : Adjust printer
-    public static void printBlock(int[][] binaryGrid) {
-        Console.printLine("");
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (j == 8) {
-                    Console.printText(" Parity bit : " + binaryGrid[i][j]);
-                } else {
-                    Console.printInt(binaryGrid[i][j]);
+    public static void printBlocks(ArrayList<Block> blocks) {
+        int nbrBlocks = blocks.size();
+        for (int blockIndex = 0; blockIndex < nbrBlocks; blockIndex++) {
+            int[][] currentBinaryGrid = blocks.get(blockIndex).getBinaryGrid();
+            for (int row = 0; row < 9; row++) {
+                for (int col = 0; col < 9; col++) {
+                    if (col == 8) {
+                        Console.printText(" Parity bit : " + currentBinaryGrid[row][col]);
+                    } else {
+                        Console.printInt(currentBinaryGrid[row][col]);
+                    }
                 }
+                Console.printLine("");
             }
-            Console.printLine("");
         }
     }
 
