@@ -1,36 +1,37 @@
 package cegepst;
 
+import java.util.ArrayList;
+
 public class Encoder {
 
     private GridManager gridManager;
     private BinaryConverter binaryConverter;
     private ParityCalculator parityCalculator;
-    private int[][] binaryGrid;
-    private final int GRID_WIDTH = 9;
-    private int gridHeight;
-    private int rowNumber = -1;
+    private ArrayList<Block> blocks;
 
     public Encoder(String entry) {
         initialiseClasses();
-        initialiseGrid(entry);
+        initialiseBlocks(entry);
         giveParamsToClasses();
-        binaryConverter.convertToBinary(entry, binaryGrid);
-        Printer.printGrid(binaryGrid, gridHeight);
+        binaryConverter.convertToBinary(entry, blocks);
+    }
+
+    private void initialiseBlocks(String entry) {
+        int nbrBlock = gridManager.getNbrOfBlocks(entry);
+        for (int i = 0; i < nbrBlock; i++) {
+            Block block = new Block();
+            blocks.add(block);
+        }
     }
 
     private void giveParamsToClasses() {
-        parityCalculator.giveParams(binaryGrid);
-        gridManager.giveParams(rowNumber, parityCalculator);
+        gridManager.giveParams(parityCalculator);
     }
 
     private void initialiseClasses() {
         gridManager = new GridManager();
         binaryConverter = new BinaryConverter(gridManager);
         parityCalculator = new ParityCalculator();
-    }
-
-    private void initialiseGrid(String entry) {
-        this.gridHeight = gridManager.getGridHeight(entry);
-        this.binaryGrid = new int[this.gridHeight][this.GRID_WIDTH];
+        blocks = new ArrayList<>();
     }
 }

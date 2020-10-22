@@ -1,5 +1,7 @@
 package cegepst;
 
+import java.util.ArrayList;
+
 public class BinaryConverter {
 
     private GridManager gridManager;
@@ -23,18 +25,18 @@ public class BinaryConverter {
         return (result.length() <= 7 && result.charAt(0) == '1');
     }
 
-    public void convertToBinary(String entry, int[][] binaryGrid) {
+    public void convertToBinary(String entry, ArrayList<Block> blocks) {
         int strLength = entry.length();
+        int blockIndex = 0;
         String binaryString;
         for (int i = 0; i < strLength; i++) {
             binaryString = toBinary(entry.charAt(i));
-
-            if (i <= 9) {
-                Console.printText(i + " : " + binaryString);
-            } else {
-                Console.printText(i + ": " + binaryString);
+            Printer.printBinairyString(binaryString, i);
+            gridManager.putInGrid(binaryString, blocks.get(blockIndex).getBinaryGrid());
+            if (i % 7 == 0 && i != 0) {
+                Printer.printBlock(blocks.get(blockIndex).getBinaryGrid());
+                blockIndex++;
             }
-            gridManager.putInGrid(binaryString, binaryGrid);
         }
     }
 }
