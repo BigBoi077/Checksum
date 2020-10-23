@@ -8,7 +8,7 @@ public class CheckSum {
         Menu menu = new Menu();
         Encoder encoder = new Encoder(menu.askEntry());
         ArrayList<Block> blocks = encoder.encode();
-        // TODO : switch numbers in the grid
+        BlockDisruptor blockDisruptor = new BlockDisruptor(blocks);
         Decoder decoder = new Decoder(blocks);
         decoder.decode();
     }

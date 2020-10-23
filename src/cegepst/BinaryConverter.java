@@ -36,7 +36,6 @@ public class BinaryConverter {
             gridManager.putInGrid(binaryString, blocks.get(blockIndex).getBinaryGrid());
             if (i != 0) {
                 if ((i % 7 == 0) || isEnd(i, strLength)) {
-                    // TODO : mettre le calculate parity line ici ?
                     int[][] binaryGrid = blocks.get(blockIndex).getBinaryGrid();
                     int[] parityLine = parityCalculator.calculateParityLine(binaryGrid);
                     gridManager.placeParityLine(parityLine, binaryGrid);
