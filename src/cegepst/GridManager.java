@@ -25,25 +25,18 @@ public class GridManager {
 
         binaryGrid[rowNumber][8] = parityCalculator.calculateParityBit(parityArray);
         Console.printLine(String.valueOf(binaryGrid[rowNumber][8]));
-
-        if (rowNumber == 7) {
-            int[] parityLine = parityCalculator.calculateParityLine(binaryGrid);
-            placeParityLine(parityLine, binaryGrid);
-            binaryGrid[rowNumber][8] = parityCalculator.calculateParityBit(parityLine);
-            rowNumber = -1;
-            return;
-        }
     }
 
-    private void placeParityLine(int[] parityLine, int[][] binaryGrid) {
+    public void placeParityLine(int[] parityLine, int[][] binaryGrid) {
         Console.printLine("");
         Console.printLine("Parity line: ");
         Console.printText("    ");
         for (int i = 0; i < 9; i++ ) {
-            binaryGrid[rowNumber][i] = parityLine[i];
+            binaryGrid[8][i] = parityLine[i];
             Console.printText(String.valueOf((binaryGrid[rowNumber][i])));
         }
         Console.printLine("");
         Console.printLine("");
+        rowNumber = -1;
     }
 }

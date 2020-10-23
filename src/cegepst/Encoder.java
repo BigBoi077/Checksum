@@ -32,6 +32,7 @@ public class Encoder {
 
     private void giveParamsToClasses() {
         gridManager.giveParams(parityCalculator);
+        binaryConverter.giveParams(parityCalculator);
     }
 
     private void initialiseClasses() {

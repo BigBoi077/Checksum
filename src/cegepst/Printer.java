@@ -18,6 +18,7 @@ public class Printer {
                 }
                 Console.printLine("");
             }
+            Console.printLine("");
         }
     }
 
