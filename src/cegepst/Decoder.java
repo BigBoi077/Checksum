@@ -37,6 +37,7 @@ public class Decoder {
                 throwGridError();
             }
             decodeGrid(blocks.get(i).getBinaryGrid());
+            // TODO : fix les broken bytes
         }
         return decodedString;
     }
