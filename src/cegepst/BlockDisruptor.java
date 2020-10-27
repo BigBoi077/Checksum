@@ -13,7 +13,6 @@ public class BlockDisruptor {
         for (int i = 0; i < nbrBlocks; i++) {
             switchRandomByte(blocks.get(i).getBinaryGrid());
         }
-        Printer.printBlocks(blocks);
     }
 
     private void switchRandomByte(int[][] binaryGrid) {

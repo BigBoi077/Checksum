@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 public class CheckSum {
 
+    private ArrayList<Block> blocks;
+
     public CheckSum() {
         Menu menu = new Menu();
         Encoder encoder = new Encoder(menu.askEntry());
-        ArrayList<Block> blocks = encoder.encode();
-        BlockDisruptor blockDisruptor = new BlockDisruptor(blocks);
-        Decoder decoder = new Decoder(blocks);
-        decoder.decode();
+        blocks = encoder.encode();
+        new BlockDisruptor(blocks);
+        Decoder decoder = new Decoder();
+        decoder.decode(blocks);
     }
 }
