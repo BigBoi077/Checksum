@@ -8,4 +8,8 @@ public class Menu {
         Console.printText("Please enter a string of characters : ");
         return scanner.nextLine();
     }
+
+    public void showDecodedString(String decodedString) {
+        Console.printLine("The decoded string is : " + decodedString);
+    }
 }

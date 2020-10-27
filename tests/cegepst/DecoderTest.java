@@ -17,5 +17,6 @@ public class DecoderTest {
         assertEquals("c", decoder.getChar("01100011"));
         assertEquals("j", decoder.getChar("01101010"));
         assertEquals("&", decoder.getChar("00100110"));
+        assertEquals("Q", decoder.getChar("01010001"));
     }
 }

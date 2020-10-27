@@ -12,6 +12,6 @@ public class CheckSum {
         blocks = encoder.encode();
         new BlockDisruptor(blocks);
         Decoder decoder = new Decoder();
-        decoder.decode(blocks);
+        menu.showDecodedString(decoder.decode(blocks));
     }
 }

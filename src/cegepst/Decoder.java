@@ -7,7 +7,7 @@ public class Decoder {
     private ArrayList<Integer> rowErrors;
     private ArrayList<Integer> colErrors;
     private GridScanner gridScanner;
-    private String decodedString;
+    private String decodedString = "";
 
     public Decoder() {
         gridScanner = new GridScanner();
@@ -24,20 +24,21 @@ public class Decoder {
 
     public String getChar(String binaryString) {
         int charCode = Integer.parseInt(binaryString, 2);
-        return new Character((char)charCode).toString();
+        return String.valueOf((char)charCode);
     }
 
-    public void decode(ArrayList<Block> blocks) {
+    public String decode(ArrayList<Block> blocks) {
         int nbrBlocks = blocks.size();
         for (int i = 0; i < nbrBlocks; i++) {
             initialiseErrorLists();
             gridScanner.scanRows(blocks.get(i).getBinaryGrid(), rowErrors);
             gridScanner.scanCols(blocks.get(i).getBinaryGrid(), colErrors);
-            if (isGridError()) {
+            if (!isGridError()) {
                 throwGridError();
             }
             decodeGrid(blocks.get(i).getBinaryGrid());
         }
+        return decodedString;
     }
 
     private void decodeGrid(int[][] binaryGrid) {

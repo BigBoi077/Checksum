@@ -18,8 +18,8 @@ public class BlockDisruptor {
     private void switchRandomByte(int[][] binaryGrid) {
         int nbrBytesToChange = random.nextInt(5);
         for (int i = 0; i < nbrBytesToChange; i++) {
-            int randomRow = random.nextInt(10);
-            int randomCol = random.nextInt(10);
+            int randomRow = random.nextInt(9);
+            int randomCol = random.nextInt(9);
             if (binaryGrid[randomRow][randomCol] == 1) {
                 binaryGrid[randomRow][randomCol] = 0;
             } else {
