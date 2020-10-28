@@ -6,7 +6,8 @@ public class BlockFixer {
     public void repairBrokenBytes(Block block, ArrayList<Integer> rowErrors, ArrayList<Integer> colErrors) {
         int nbrErrors = rowErrors.size();
         for (int i = 0; i < nbrErrors; i++) {
-            switchByte(block.getBinaryGrid(),rowErrors.get(i), colErrors.get(i));
+            Console.printLine("Normaly repair : " + rowErrors.get(i) + " | " + colErrors.get(i));
+            switchByte(block.getBinaryGrid(), rowErrors.get(i), colErrors.get(i));
         }
     }
 

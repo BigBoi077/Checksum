@@ -11,6 +11,7 @@ public class BlockDisruptor {
         this.random = new Random();
         int nbrBlocks = blocks.size();
         for (int i = 0; i < nbrBlocks; i++) {
+            Console.printLine("Blocl #" + i);
             switchRandomByte(blocks.get(i).getBinaryGrid());
         }
     }

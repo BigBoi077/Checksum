@@ -10,7 +10,7 @@ public class GridManager {
     }
 
     public int getNbrOfBlocks(String entry) {
-        return (int) Math.ceil((double)entry.length() / 8);
+        return (int) (Math.ceil((double)entry.length() / 8) + 1);
     }
 
     public void putInGrid(String binaryString, int[][] binaryGrid) {

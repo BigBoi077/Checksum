@@ -38,10 +38,22 @@ public class Decoder {
             if (isGridError()) {
                 throwGridError();
             }
+            killLAstIndex();
             blockFixer.repairBrokenBytes(blocks.get(i), rowErrors, colErrors);
             decodeGrid(blocks.get(i).getBinaryGrid());
         }
         return decodedString;
+    }
+
+    private void killLAstIndex() {
+        int lastIndex = rowErrors.size() - 1;
+        if (lastIndex == -1) {
+            return;
+        }
+        if (rowErrors.get(lastIndex) == 8 && colErrors.get(lastIndex) == 8) {
+            rowErrors.remove(lastIndex);
+            colErrors.remove(lastIndex);
+        }
     }
 
     private void decodeGrid(int[][] binaryGrid) {

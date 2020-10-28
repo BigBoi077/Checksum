@@ -18,7 +18,6 @@ public class GridScanner {
             }
             int parityBit = binaryGrid[row][8];
             if (!verifier.verify(binaryArray, parityBit)) {
-                Console.printLine("Found error");
                 rowErrors.add(row);
             }
         }
@@ -32,9 +31,21 @@ public class GridScanner {
             }
             int parityBit = binaryGrid[8][col];
             if (!verifier.verify(binaryArray, parityBit)) {
-                Console.printLine("Found error");
                 colErrors.add(col);
             }
         }
     }
+
+     /* public int[] calculateParityLine(int[][] binaryGrid) {
+        int[] verticalColumn = new int[8];
+        int[] parityLine = new int[9];
+        for (int col = 0; col < 9; col++) {
+            for (int row = 0; row < 8; row++) {
+                verticalColumn[row] = binaryGrid[row][col];
+            }
+            parityLine[col] = calculateParityBit(verticalColumn);
+        }
+        return parityLine;
+    } */
+
 }

@@ -43,6 +43,14 @@ public class BinaryConverter {
                     blockIndex++;
                 }
             }
+            if (strLength == 1) {
+                int[][] binaryGrid = blocks.get(blockIndex).getBinaryGrid();
+                int[] parityLine = parityCalculator.calculateParityLine(binaryGrid);
+                gridManager.placeParityLine(parityLine, binaryGrid);
+                binaryGrid[8][8] = parityCalculator.calculateParityBit(parityLine);
+                blockIndex++;
+            }
+
         }
     }
 
