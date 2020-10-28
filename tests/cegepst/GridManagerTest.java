@@ -20,6 +20,7 @@ public class GridManagerTest {
         assertEquals(2, gridManager.getNbrOfBlocks("El Blanco"));
         assertEquals(3, gridManager.getNbrOfBlocks("Une planche de huit pied"));
         assertEquals(2, gridManager.getNbrOfBlocks("Miami palms"));
-        assertEquals(4, gridManager.getNbrOfBlocks("asdfaskdfla;sdkf'a;lsdfasdl';f"));
+        assertEquals(4, gridManager.getNbrOfBlocks("Synthwave music is the best"));
+        assertEquals(5, gridManager.getNbrOfBlocks("Please enter a string of characters : "));
     }
 }

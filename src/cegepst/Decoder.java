@@ -7,10 +7,12 @@ public class Decoder {
     private ArrayList<Integer> rowErrors;
     private ArrayList<Integer> colErrors;
     private GridScanner gridScanner;
+    private BlockFixer blockFixer;
     private String decodedString = "";
 
     public Decoder() {
         gridScanner = new GridScanner();
+        blockFixer = new BlockFixer();
     }
 
     public void initialiseErrorLists() {
@@ -33,11 +35,11 @@ public class Decoder {
             initialiseErrorLists();
             gridScanner.scanRows(blocks.get(i).getBinaryGrid(), rowErrors);
             gridScanner.scanCols(blocks.get(i).getBinaryGrid(), colErrors);
-            if (!isGridError()) {
+            if (isGridError()) {
                 throwGridError();
             }
+            blockFixer.repairBrokenBytes(blocks.get(i), rowErrors, colErrors);
             decodeGrid(blocks.get(i).getBinaryGrid());
-            // TODO : fix les broken bytes
         }
         return decodedString;
     }

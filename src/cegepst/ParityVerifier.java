@@ -11,8 +11,9 @@ public class ParityVerifier {
         }
         if (sum % 2 == 0) {
             wantedParityBit = 0;
+        } else {
+            wantedParityBit = 1;
         }
-        wantedParityBit = 1;
         return wantedParityBit == parityBit;
     }
 }

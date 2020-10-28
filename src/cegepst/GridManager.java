@@ -33,7 +33,7 @@ public class GridManager {
         Console.printText("    ");
         for (int i = 0; i < 9; i++ ) {
             binaryGrid[8][i] = parityLine[i];
-            Console.printText(String.valueOf((binaryGrid[rowNumber][i])));
+            Console.printText(String.valueOf((binaryGrid[8][i])));
         }
         Console.printLine("");
         Console.printLine("");

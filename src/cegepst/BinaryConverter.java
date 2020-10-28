@@ -44,7 +44,6 @@ public class BinaryConverter {
                 }
             }
         }
-        Printer.printBlocks(blocks);
     }
 
     private boolean isEnd(int i, int strLength) {

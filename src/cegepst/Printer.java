@@ -3,7 +3,6 @@ package cegepst;
 import java.util.ArrayList;
 
 public class Printer {
-    // TODO : Adjust printer
     public static void printBlocks(ArrayList<Block> blocks) {
         int nbrBlocks = blocks.size();
         for (int blockIndex = 0; blockIndex < nbrBlocks; blockIndex++) {
