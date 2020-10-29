@@ -2,7 +2,6 @@ package cegepst;
 
 public class ParityVerifier {
 
-
     public boolean verify(int[] binaryArray, int parityBit) {
         int sum = 0;
         int wantedParityBit;

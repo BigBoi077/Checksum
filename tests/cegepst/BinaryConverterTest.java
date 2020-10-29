@@ -9,7 +9,7 @@ public class BinaryConverterTest {
     private BinaryConverter binaryConverter;
 
     public BinaryConverterTest() {
-        GridManager gridManager = new GridManager();
+        BlockManager gridManager = new BlockManager();
         this.binaryConverter = new BinaryConverter(gridManager);
     }
 

@@ -11,7 +11,6 @@ public class BlockDisruptor {
         this.random = new Random();
         int nbrBlocks = blocks.size();
         for (int i = 0; i < nbrBlocks; i++) {
-            Console.printLine("Blocl #" + i);
             switchRandomByte(blocks.get(i).getBinaryGrid());
         }
     }
@@ -21,9 +20,6 @@ public class BlockDisruptor {
         for (int i = 0; i < nbrBytesToChange; i++) {
             int randomRow = random.nextInt(9);
             int randomCol = random.nextInt(9);
-
-            Console.printLine("Disrupted at : " + randomRow + " | " + randomCol);
-
             if (binaryGrid[randomRow][randomCol] == 1) {
                 binaryGrid[randomRow][randomCol] = 0;
             } else {

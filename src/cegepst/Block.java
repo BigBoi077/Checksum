@@ -6,6 +6,10 @@ public class Block {
 
     public Block() {
         binaryGrid = new int[9][9];
+        initialiseBlock();
+    }
+
+    private void initialiseBlock() {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 binaryGrid[row][col] = 0;

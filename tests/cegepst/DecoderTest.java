@@ -9,7 +9,7 @@ public class DecoderTest {
     private Decoder decoder;
 
     public DecoderTest() {
-        decoder = new Decoder();
+        // decoder = new Decoder();
     }
 
     @Test

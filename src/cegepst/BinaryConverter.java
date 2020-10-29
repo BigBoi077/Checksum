@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class BinaryConverter {
 
-    private GridManager gridManager;
+    private BlockManager gridManager;
     private ParityCalculator parityCalculator;
+    private int blockIndex = 0;
 
-    public BinaryConverter(GridManager gridManager) {
+    public BinaryConverter(BlockManager gridManager) {
         this.gridManager = gridManager;
     }
 
@@ -28,30 +29,31 @@ public class BinaryConverter {
 
     public void start(String entry, ArrayList<Block> blocks) {
         int strLength = entry.length();
-        int blockIndex = 0;
         String binaryString;
         for (int i = 0; i < strLength; i++) {
             binaryString = toBinary(entry.charAt(i));
-            Printer.printBinairyString(binaryString, i);
             gridManager.putInGrid(binaryString, blocks.get(blockIndex).getBinaryGrid());
+            if (strLength == 1) {
+                manageParityLine(blocks);
+            }
             if (i != 0) {
-                if ((i % 7 == 0) || isEnd(i, strLength)) {
-                    int[][] binaryGrid = blocks.get(blockIndex).getBinaryGrid();
-                    int[] parityLine = parityCalculator.calculateParityLine(binaryGrid);
-                    gridManager.placeParityLine(parityLine, binaryGrid);
-                    binaryGrid[8][8] = parityCalculator.calculateParityBit(parityLine);
-                    blockIndex++;
+                if (isBeforeLastLine(i) || isEnd(i, strLength)) {
+                    manageParityLine(blocks);
                 }
             }
-            if (strLength == 1) {
-                int[][] binaryGrid = blocks.get(blockIndex).getBinaryGrid();
-                int[] parityLine = parityCalculator.calculateParityLine(binaryGrid);
-                gridManager.placeParityLine(parityLine, binaryGrid);
-                binaryGrid[8][8] = parityCalculator.calculateParityBit(parityLine);
-                blockIndex++;
-            }
-
         }
+    }
+
+    private boolean isBeforeLastLine(int i) {
+        return (i % 7 == 0);
+    }
+
+    private void manageParityLine(ArrayList<Block> blocks) {
+        int[][] binaryGrid = blocks.get(blockIndex).getBinaryGrid();
+        int[] parityLine = parityCalculator.calculateParityLine(binaryGrid);
+        gridManager.placeParityLine(parityLine, binaryGrid);
+        binaryGrid[8][8] = parityCalculator.calculateParityBit(parityLine);
+        blockIndex++;
     }
 
     private boolean isEnd(int i, int strLength) {

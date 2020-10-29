@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GridManagerTest {
+public class BlockManagerTest {
 
-    private GridManager gridManager;
+    private BlockManager gridManager;
 
-    public GridManagerTest() {
-        this.gridManager = new GridManager();
+    public BlockManagerTest() {
+        this.gridManager = new BlockManager();
     }
 
     @Test

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Encoder {
 
-    private GridManager gridManager;
+    private BlockManager gridManager;
     private BinaryConverter binaryConverter;
     private ParityCalculator parityCalculator;
     private ArrayList<Block> blocks;
@@ -12,14 +12,15 @@ public class Encoder {
 
     public Encoder(String entry) {
         this.entry = entry;
+        encode();
     }
 
-    public ArrayList<Block> encode() {
+    public void encode() {
         initialiseClasses();
         initialiseBlocks(entry);
         giveParamsToClasses();
         binaryConverter.start(entry, blocks);
-        return blocks;
+        Printer.printBlocks(blocks);
     }
 
     private void initialiseBlocks(String entry) {
@@ -36,7 +37,7 @@ public class Encoder {
     }
 
     private void initialiseClasses() {
-        gridManager = new GridManager();
+        gridManager = new BlockManager();
         binaryConverter = new BinaryConverter(gridManager);
         parityCalculator = new ParityCalculator();
         blocks = new ArrayList<>();

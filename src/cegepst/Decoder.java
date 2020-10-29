@@ -6,13 +6,16 @@ public class Decoder {
 
     private ArrayList<Integer> rowErrors;
     private ArrayList<Integer> colErrors;
+    private ArrayList<Block> blocks;
     private GridScanner gridScanner;
     private BlockFixer blockFixer;
+    private BlockManager blockManager;
     private String decodedString = "";
 
-    public Decoder() {
+    public Decoder(String binaryBlock) {
         gridScanner = new GridScanner();
         blockFixer = new BlockFixer();
+        blockManager.placeBinaryBlock(binaryBlock);
     }
 
     public void initialiseErrorLists() {
