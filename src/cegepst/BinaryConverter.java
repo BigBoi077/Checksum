@@ -24,8 +24,12 @@ public class BinaryConverter {
         return result;
     }
 
-    private boolean isToShort(String result) {
-        return (result.length() <= 7 && result.charAt(0) == '1');
+    public void giveParams(ParityCalculator parityCalculator) {
+        this.parityCalculator = parityCalculator;
+    }
+
+    public String getFullBinaryString() {
+        return fullBinaryString;
     }
 
     public void start(String entry, ArrayList<Block> blocks) {
@@ -60,11 +64,7 @@ public class BinaryConverter {
         return i + 1 == strLength;
     }
 
-    public void giveParams(ParityCalculator parityCalculator) {
-        this.parityCalculator = parityCalculator;
-    }
-
-    public String getFullBinaryString() {
-        return fullBinaryString;
+    private boolean isToShort(String result) {
+        return (result.length() <= 7 && result.charAt(0) == '1');
     }
 }

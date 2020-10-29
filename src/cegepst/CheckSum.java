@@ -1,7 +1,5 @@
 package cegepst;
 
-import java.util.ArrayList;
-
 public class CheckSum {
 
     public CheckSum() {

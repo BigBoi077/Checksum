@@ -10,20 +10,6 @@ public class Menu {
         scanner = new Scanner(System.in);
     }
 
-    private String askEntry() {
-        Console.printText("Please enter a string of characters : ");
-        return scanner.nextLine();
-    }
-
-    private String askBinaryEntry() {
-        Console.printText("Please enter a string of characters : ");
-        return scanner.next();
-    }
-
-    public void showDecodedString(String decodedString) {
-        Console.printLine("The decoded string is : " + decodedString);
-    }
-
     public void askChoice() {
         Console.printText("Would you like to (Encode : 1 or Decode : 2) ? : ");
         int choice = askOneOrTwo();
@@ -47,5 +33,15 @@ public class Menu {
             }
             Console.printLine("Answer must be 1 or 2 ...");
         } while (true);
+    }
+
+    private String askEntry() {
+        Console.printText("Please enter a string of characters : ");
+        return scanner.nextLine();
+    }
+
+    private String askBinaryEntry() {
+        Console.printText("Please enter a string of characters : ");
+        return scanner.next();
     }
 }
