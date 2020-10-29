@@ -9,9 +9,15 @@ public class Menu {
     public Menu() {
         scanner = new Scanner(System.in);
     }
-    public String askEntry() {
+
+    private String askEntry() {
         Console.printText("Please enter a string of characters : ");
         return scanner.nextLine();
+    }
+
+    private String askBinaryEntry() {
+        Console.printText("Please enter a string of characters : ");
+        return scanner.next();
     }
 
     public void showDecodedString(String decodedString) {
@@ -22,9 +28,11 @@ public class Menu {
         Console.printText("Would you like to (Encode : 1 or Decode : 2) ? : ");
         int choice = askOneOrTwo();
         if (choice == 1) {
-            new Encoder(askEntry());
+            Encoder encoder = new Encoder();
+            encoder.encode(askEntry());
         } else {
-            new Decoder(askEntry());
+            Decoder decoder = new Decoder();
+            decoder.decode(askBinaryEntry());
         }
     }
 

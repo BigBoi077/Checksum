@@ -9,7 +9,7 @@ public class DecoderTest {
     private Decoder decoder;
 
     public DecoderTest() {
-        // decoder = new Decoder();
+        decoder = new Decoder();
     }
 
     @Test
@@ -18,5 +18,11 @@ public class DecoderTest {
         assertEquals("j", decoder.getChar("01101010"));
         assertEquals("&", decoder.getChar("00100110"));
         assertEquals("Q", decoder.getChar("01010001"));
+    }
+
+    @Test
+    public void decodingTest() {
+        assertEquals("001001101000000000000000000000000000000000000000000000000000000000000000001001100",
+                decoder.decode("&"));
     }
 }

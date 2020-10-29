@@ -1,5 +1,7 @@
 package cegepst;
 
+import java.util.ArrayList;
+
 public class BlockManager {
 
     private ParityCalculator parityCalculator;
@@ -30,6 +32,30 @@ public class BlockManager {
         rowNumber = -1;
     }
 
-    public void placeBinaryBlock(String binaryBlock) {
+    public void placeBinaryBlock(ArrayList<Block> blocks, String binaryBlock) {
+    }
+
+    public ArrayList<Block> initialiseBlocks(String entry) {
+        ArrayList<Block> blocks = new ArrayList<>();
+        int nbrBlock = getNbrOfBlocks(entry);
+        for (int i = 0; i < nbrBlock; i++) {
+            Block block = new Block();
+            blocks.add(block);
+        }
+        return blocks;
+    }
+
+    public String getFullBinaryString(ArrayList<Block> blocks) {
+        String fullBinaryString = "";
+        int nbrBlocks = blocks.size();
+        for (int blockIndex = 0; blockIndex < nbrBlocks; blockIndex++) {
+            int[][] currentBinaryGrid = blocks.get(blockIndex).getBinaryGrid();
+            for (int row = 0; row < 9; row++) {
+                for (int col = 0; col < 9; col++) {
+                    fullBinaryString += currentBinaryGrid[row][col];
+                }
+            }
+        }
+        return fullBinaryString;
     }
 }

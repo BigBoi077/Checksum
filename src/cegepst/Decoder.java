@@ -12,10 +12,10 @@ public class Decoder {
     private BlockManager blockManager;
     private String decodedString = "";
 
-    public Decoder(String binaryBlock) {
+    public Decoder() {
         gridScanner = new GridScanner();
         blockFixer = new BlockFixer();
-        blockManager.placeBinaryBlock(binaryBlock);
+        blockManager = new BlockManager();
     }
 
     public void initialiseErrorLists() {
@@ -32,7 +32,8 @@ public class Decoder {
         return String.valueOf((char)charCode);
     }
 
-    public String decode(ArrayList<Block> blocks) {
+    public String decode(String binaryString) {
+        blockManager.placeBinaryBlock(blocks, binaryString);
         int nbrBlocks = blocks.size();
         for (int i = 0; i < nbrBlocks; i++) {
             initialiseErrorLists();

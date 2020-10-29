@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 public class BinaryConverter {
 
-    private BlockManager gridManager;
+    private BlockManager blockManager;
     private ParityCalculator parityCalculator;
+    private String fullBinaryString;
     private int blockIndex = 0;
 
     public BinaryConverter(BlockManager gridManager) {
-        this.gridManager = gridManager;
+        this.blockManager = gridManager;
     }
 
     public String toBinary(char currentChar) {
@@ -29,19 +30,19 @@ public class BinaryConverter {
 
     public void start(String entry, ArrayList<Block> blocks) {
         int strLength = entry.length();
-        String binaryString;
         for (int i = 0; i < strLength; i++) {
-            binaryString = toBinary(entry.charAt(i));
-            gridManager.putInGrid(binaryString, blocks.get(blockIndex).getBinaryGrid());
+            blockManager.putInGrid(toBinary(entry.charAt(i)), blocks.get(blockIndex).getBinaryGrid());
             if (strLength == 1) {
                 manageParityLine(blocks);
+                blockIndex++;
             }
-            if (i != 0) {
-                if (isBeforeLastLine(i) || isEnd(i, strLength)) {
-                    manageParityLine(blocks);
-                }
+            if ((isBeforeLastLine(i) || isEnd(i, strLength)) && i != 0) {
+                manageParityLine(blocks);
+                blockIndex++;
             }
         }
+        fullBinaryString = blockManager.getFullBinaryString(blocks);
+        Console.printLine(fullBinaryString);
     }
 
     private boolean isBeforeLastLine(int i) {
@@ -51,9 +52,8 @@ public class BinaryConverter {
     private void manageParityLine(ArrayList<Block> blocks) {
         int[][] binaryGrid = blocks.get(blockIndex).getBinaryGrid();
         int[] parityLine = parityCalculator.calculateParityLine(binaryGrid);
-        gridManager.placeParityLine(parityLine, binaryGrid);
+        blockManager.placeParityLine(parityLine, binaryGrid);
         binaryGrid[8][8] = parityCalculator.calculateParityBit(parityLine);
-        blockIndex++;
     }
 
     private boolean isEnd(int i, int strLength) {
@@ -62,5 +62,9 @@ public class BinaryConverter {
 
     public void giveParams(ParityCalculator parityCalculator) {
         this.parityCalculator = parityCalculator;
+    }
+
+    public String getFullBinaryString() {
+        return fullBinaryString;
     }
 }
