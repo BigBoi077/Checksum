@@ -1,8 +1,10 @@
 package cegepst;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class DecoderTest {
 
@@ -22,7 +24,7 @@ public class DecoderTest {
 
     @Test
     public void decodingTest() {
-        assertEquals("001001101000000000000000000000000000000000000000000000000000000000000000001001100",
-                decoder.decode("&"));
+        assertEquals("&", decoder.decode("001001101000000000000000000000000000000000000000000000000000000000000000001001100"));
+        assertEquals("joshua", decoder.decode("011010100011011110011100111011010001011101011011000011000000000000000000000010100"));
     }
 }

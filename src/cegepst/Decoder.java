@@ -10,7 +10,7 @@ public class Decoder {
     private GridScanner gridScanner;
     private BlockFixer blockFixer;
     private BlockManager blockManager;
-    private String decodedString = "";
+    private String decodedString;
 
     public Decoder() {
         gridScanner = new GridScanner();
@@ -33,31 +33,25 @@ public class Decoder {
     }
 
     public String decode(String binaryString) {
-        blockManager.placeBinaryBlock(blocks, binaryString);
+        decodedString = "";
+        blocks = blockManager.placeBinaryBlock(blocks, binaryString);
         int nbrBlocks = blocks.size();
         for (int i = 0; i < nbrBlocks; i++) {
-            initialiseErrorLists();
-            gridScanner.scanRows(blocks.get(i).getBinaryGrid(), rowErrors);
-            gridScanner.scanCols(blocks.get(i).getBinaryGrid(), colErrors);
+            scanForErrors(i);
             if (isGridError()) {
                 throwGridError();
             }
-            killLAstIndex();
             blockFixer.repairBrokenBytes(blocks.get(i), rowErrors, colErrors);
             decodeGrid(blocks.get(i).getBinaryGrid());
         }
+        Console.printLine(decodedString);
         return decodedString;
     }
 
-    private void killLAstIndex() {
-        int lastIndex = rowErrors.size() - 1;
-        if (lastIndex == -1) {
-            return;
-        }
-        if (rowErrors.get(lastIndex) == 8 && colErrors.get(lastIndex) == 8) {
-            rowErrors.remove(lastIndex);
-            colErrors.remove(lastIndex);
-        }
+    private void scanForErrors(int i) {
+        initialiseErrorLists();
+        gridScanner.scanRows(blocks.get(i).getBinaryGrid(), rowErrors);
+        gridScanner.scanCols(blocks.get(i).getBinaryGrid(), colErrors);
     }
 
     private void decodeGrid(int[][] binaryGrid) {
@@ -70,6 +64,9 @@ public class Decoder {
         String binaryString = "";
         for (int i = 0; i < 8; i++) {
             binaryString += binaryGrid[rowNumber][i];
+        }
+        if (binaryString.equals("00000000")) {
+            return "";
         }
         return String.valueOf(getChar(binaryString));
     }

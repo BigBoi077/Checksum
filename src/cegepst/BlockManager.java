@@ -15,6 +15,10 @@ public class BlockManager {
         return (int) Math.ceil((double)entry.length() / 8);
     }
 
+    public int getNbrOfBlocksForString(String entry) {
+        return entry.length() / 9 / 9;
+    }
+
     public void putInGrid(String binaryString, int[][] binaryGrid) {
         rowNumber++;
         int[] parityArray = new int[8];
@@ -32,12 +36,36 @@ public class BlockManager {
         rowNumber = -1;
     }
 
-    public void placeBinaryBlock(ArrayList<Block> blocks, String binaryBlock) {
+    public ArrayList<Block> placeBinaryBlock(ArrayList<Block> blocks, String binaryBlock) {
+        blocks = initialiseBlocksForString(binaryBlock);
+        int index = 0;
+        int nbrBlock = blocks.size();
+        for (int i = 0; i < nbrBlock; i++) {
+            int[][] currentBlock = blocks.get(i).getBinaryGrid();
+            for (int row = 0; row < 9; row++) {
+                for (int col = 0; col < 9; col++) {
+                    currentBlock[row][col] = Integer.parseInt(String.valueOf(binaryBlock.charAt(index)));
+                    index++;
+                }
+            }
+        }
+        Printer.printBlocks(blocks);
+        return blocks;
     }
 
     public ArrayList<Block> initialiseBlocks(String entry) {
         ArrayList<Block> blocks = new ArrayList<>();
         int nbrBlock = getNbrOfBlocks(entry);
+        for (int i = 0; i < nbrBlock; i++) {
+            Block block = new Block();
+            blocks.add(block);
+        }
+        return blocks;
+    }
+
+    public ArrayList<Block> initialiseBlocksForString(String entry) {
+        ArrayList<Block> blocks = new ArrayList<>();
+        int nbrBlock = getNbrOfBlocksForString(entry);
         for (int i = 0; i < nbrBlock; i++) {
             Block block = new Block();
             blocks.add(block);
