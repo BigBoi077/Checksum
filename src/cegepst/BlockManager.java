@@ -19,6 +19,18 @@ public class BlockManager {
         return entry.length() / 9 / 9;
     }
 
+    public void placeParityLine(int[] parityLine, int[][] binaryGrid) {
+        System.arraycopy(parityLine, 0, binaryGrid[8], 0, 9);
+        rowNumber = -1;
+    }
+
+    public void manageParityLine(ArrayList<Block> blocks, int blockIndex) {
+        int[][] binaryGrid = blocks.get(blockIndex).getBinaryGrid();
+        int[] parityLine = parityCalculator.calculateParityLine(binaryGrid);
+        placeParityLine(parityLine, binaryGrid);
+        binaryGrid[8][8] = parityCalculator.calculateParityBit(parityLine);
+    }
+
     public void putInGrid(String binaryString, int[][] binaryGrid) {
         rowNumber++;
         int[] parityArray = new int[8];
@@ -29,19 +41,11 @@ public class BlockManager {
         binaryGrid[rowNumber][8] = parityCalculator.calculateParityBit(parityArray);
     }
 
-    public void placeParityLine(int[] parityLine, int[][] binaryGrid) {
-        for (int i = 0; i < 9; i++ ) {
-            binaryGrid[8][i] = parityLine[i];
-        }
-        rowNumber = -1;
-    }
-
     public ArrayList<Block> placeBinaryBlock(ArrayList<Block> blocks, String binaryBlock) {
         blocks = initialiseBlocksForString(binaryBlock);
         int index = 0;
-        int nbrBlock = blocks.size();
-        for (int i = 0; i < nbrBlock; i++) {
-            int[][] currentBlock = blocks.get(i).getBinaryGrid();
+        for (Block block : blocks) {
+            int[][] currentBlock = block.getBinaryGrid();
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
                     currentBlock[row][col] = Integer.parseInt(String.valueOf(binaryBlock.charAt(index)));
@@ -75,9 +79,8 @@ public class BlockManager {
 
     public String getFullBinaryString(ArrayList<Block> blocks) {
         String fullBinaryString = "";
-        int nbrBlocks = blocks.size();
-        for (int blockIndex = 0; blockIndex < nbrBlocks; blockIndex++) {
-            int[][] currentBinaryGrid = blocks.get(blockIndex).getBinaryGrid();
+        for (Block block : blocks) {
+            int[][] currentBinaryGrid = block.getBinaryGrid();
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
                     fullBinaryString += currentBinaryGrid[row][col];

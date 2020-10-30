@@ -10,8 +10,8 @@ public class BlockDisruptor {
     public BlockDisruptor(ArrayList<Block> blocks) {
         this.random = new Random();
         int nbrBlocks = blocks.size();
-        for (int i = 0; i < nbrBlocks; i++) {
-            switchRandomByte(blocks.get(i).getBinaryGrid());
+        for (Block block : blocks) {
+            switchRandomByte(block.getBinaryGrid());
         }
     }
 

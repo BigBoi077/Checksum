@@ -13,9 +13,7 @@ public class GridScanner {
     public void scanRows(int[][] binaryGrid, ArrayList<Integer> rowErrors) {
         int[] binaryArray = new int[8];
         for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 8; col++) {
-                binaryArray[col] = binaryGrid[row][col];
-            }
+            System.arraycopy(binaryGrid[row], 0, binaryArray, 0, 8);
             int parityBit = binaryGrid[row][8];
             if (!verifier.verify(binaryArray, parityBit)) {
                 rowErrors.add(row);

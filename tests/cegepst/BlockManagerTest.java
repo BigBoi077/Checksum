@@ -22,6 +22,7 @@ public class BlockManagerTest {
         assertEquals(2, blockManager.getNbrOfBlocks("Miami palms"));
         assertEquals(4, blockManager.getNbrOfBlocks("Synthwave music is the best"));
         assertEquals(5, blockManager.getNbrOfBlocks("Please enter a string of characters : "));
+        assertEquals(2, blockManager.getNbrOfBlocks("igqHMg80zT5XdVFU"));
     }
 
     @Test

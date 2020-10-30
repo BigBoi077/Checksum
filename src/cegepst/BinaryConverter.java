@@ -37,11 +37,11 @@ public class BinaryConverter {
         for (int i = 0; i < strLength; i++) {
             blockManager.putInGrid(toBinary(entry.charAt(i)), blocks.get(blockIndex).getBinaryGrid());
             if (strLength == 1) {
-                manageParityLine(blocks);
+                blockManager.manageParityLine(blocks, blockIndex);
                 blockIndex++;
             }
             if ((isBeforeLastLine(i) || isEnd(i, strLength)) && i != 0) {
-                manageParityLine(blocks);
+                blockManager.manageParityLine(blocks, blockIndex);
                 blockIndex++;
             }
         }
@@ -50,14 +50,7 @@ public class BinaryConverter {
     }
 
     private boolean isBeforeLastLine(int i) {
-        return (i % 7 == 0);
-    }
-
-    private void manageParityLine(ArrayList<Block> blocks) {
-        int[][] binaryGrid = blocks.get(blockIndex).getBinaryGrid();
-        int[] parityLine = parityCalculator.calculateParityLine(binaryGrid);
-        blockManager.placeParityLine(parityLine, binaryGrid);
-        binaryGrid[8][8] = parityCalculator.calculateParityBit(parityLine);
+        return (i % 8 == 0);
     }
 
     private boolean isEnd(int i, int strLength) {
