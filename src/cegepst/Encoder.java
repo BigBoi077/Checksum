@@ -19,7 +19,6 @@ public class Encoder {
 
     private void giveParamsToClasses() {
         blockManager.giveParams(parityCalculator);
-        binaryConverter.giveParams(parityCalculator);
     }
 
     private void initialiseClasses(String entry) {

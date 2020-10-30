@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class BinaryConverter {
 
     private BlockManager blockManager;
-    private ParityCalculator parityCalculator;
     private String fullBinaryString;
     private int blockIndex = 0;
 
@@ -22,10 +21,6 @@ public class BinaryConverter {
             return result;
         }
         return result;
-    }
-
-    public void giveParams(ParityCalculator parityCalculator) {
-        this.parityCalculator = parityCalculator;
     }
 
     public String getFullBinaryString() {
