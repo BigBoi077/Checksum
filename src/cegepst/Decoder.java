@@ -23,13 +23,13 @@ public class Decoder {
         colErrors = new ArrayList<>();
     }
 
-    public boolean isGridError() {
-        return rowErrors.size() != colErrors.size();
-    }
-
     public String getChar(String binaryString) {
         int charCode = Integer.parseInt(binaryString, 2);
         return String.valueOf((char)charCode);
+    }
+
+    public boolean isGridError() {
+        return rowErrors.size() != colErrors.size();
     }
 
     public String decode(String binaryString) {

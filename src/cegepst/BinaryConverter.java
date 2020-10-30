@@ -12,6 +12,10 @@ public class BinaryConverter {
         this.blockManager = gridManager;
     }
 
+    public String getFullBinaryString() {
+        return fullBinaryString;
+    }
+
     public String toBinary(char currentChar) {
         String result = Integer.toBinaryString(currentChar);
         if (isToShort(result)) {
@@ -21,10 +25,6 @@ public class BinaryConverter {
             return result;
         }
         return result;
-    }
-
-    public String getFullBinaryString() {
-        return fullBinaryString;
     }
 
     public void start(String entry, ArrayList<Block> blocks) {
@@ -45,7 +45,7 @@ public class BinaryConverter {
     }
 
     private boolean isBeforeLastLine(int i) {
-        return (i % 8 == 0);
+        return (i % 7 == 0);
     }
 
     private boolean isEnd(int i, int strLength) {

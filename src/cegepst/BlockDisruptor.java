@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class BlockDisruptor {
-
+    
     private Random random;
 
     public BlockDisruptor(ArrayList<Block> blocks) {

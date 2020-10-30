@@ -4,6 +4,6 @@ public class CheckSum {
 
     public CheckSum() {
         Menu menu = new Menu();
-        menu.askChoice();
+        menu.choseProgram();
     }
 }

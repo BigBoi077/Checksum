@@ -10,9 +10,9 @@ public class Menu {
         scanner = new Scanner(System.in);
     }
 
-    public void askChoice() {
-        Console.printText("Would you like to (Encode : 1 or Decode : 2) ? : ");
-        int choice = askOneOrTwo();
+    public void choseProgram() {
+        Console.printText("Would you like to Encode or Decode ? : ");
+        int choice = askChoice();
         if (choice == 1) {
             Encoder encoder = new Encoder();
             encoder.encode(askEntry());
@@ -22,16 +22,16 @@ public class Menu {
         }
     }
 
-    public int askOneOrTwo() {
+    public int askChoice() {
         do {
             String str = scanner.nextLine();
-            if (str.equals("1")) {
+            if (str.equalsIgnoreCase("encode")) {
                 return 1;
             }
-            if (str.equals("2")) {
+            if (str.equalsIgnoreCase("decode")) {
                 return 2;
             }
-            Console.printLine("Answer must be 1 or 2 ...");
+            Console.printLine("Answer must be Encode or Decode ...");
         } while (true);
     }
 
